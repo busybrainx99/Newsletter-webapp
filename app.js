@@ -25,7 +25,6 @@ app.post("/", function(req,res){
           
       const run = async () => {
 
-        const reply = await client.ping.get();
         const response = await client.lists.batchListMembers("e8e22b8b40", {
 
           members: [
