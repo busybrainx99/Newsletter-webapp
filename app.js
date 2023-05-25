@@ -1,8 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
-const { urlencoded } = require("body-parser");
-const https = require ("https");
 const client = require("@mailchimp/mailchimp_marketing");
 
 const app = express();
@@ -46,14 +43,9 @@ app.post("/", function(req,res){
           
       if (response.new_members[0].status === "subscribed" ) {
         res.sendFile(__dirname + "/success.html");
-    } else {
+    } else  {
         res.sendFile(__dirname + "/failure.html");
     };
-
-        
-
-      
-       
       };
       
       run();    
@@ -71,7 +63,7 @@ app.post("/success.html", function(req,res){
 
 
 
-app.listen(process.env.PORT,function(){
+app.listen(process.env.PORT || 3003,function(){
     console.log("server is running on port 3003")
 })
 
@@ -79,6 +71,10 @@ app.listen(process.env.PORT,function(){
 //ListID: e8e22b8b40
 
 
+
+// const request = require("request");
+// const { urlencoded } = require("body-parser");
+// const https = require ("https");
 
 // app.post("/",function(req,res){
 //     const firstName = req.body.fName;
