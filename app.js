@@ -17,8 +17,9 @@ app.post("/", function(req,res){
     const firstName = req.body.fName;
     const lastName = req.body.lName;
     const email = req.body.email;
-    
+
     client.setConfig({
+        //Api key would be revoked by mailchimp when published as a public repository
         apiKey: "5a84a7dbb62d269ab1d1d7ccf1f06068-us14",
         server: "us14",
       });
@@ -39,7 +40,8 @@ app.post("/", function(req,res){
         });
 
         console.log(response);
-          
+
+       //Takes you to either success or failure page.   
       if (response.new_members[0].status === "subscribed" ) {
         res.sendFile(__dirname + "/success.html");
     } else  {
@@ -50,7 +52,7 @@ app.post("/", function(req,res){
       run();    
 });
 
-
+//redirects you to homepage.
 app.post("/success.html", function(req,res){
     res.redirect("/")
    });
